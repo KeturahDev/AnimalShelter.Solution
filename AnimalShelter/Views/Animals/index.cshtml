@@ -11,10 +11,10 @@
 {
   <h3>No animals have been added yet!</h3>
 } 
-<ul>
+
 	@foreach (Animal animal in Model)
 	{
-	<li>@Html.ActionLink($"{animal.Name}", "Details", new { id = animal.AnimalId })</li> 
+	<p>@Html.ActionLink($"{animal.Name}", "Details", new { id = animal.AnimalId })</p> 
 	}
-</ul>
+
 <p>@Html.ActionLink("Add new animal", "Create")</p>
