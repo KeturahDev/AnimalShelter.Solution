@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using AnimalShelter.Models;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace AnimalShelter.Controllers
@@ -35,8 +36,21 @@ namespace AnimalShelter.Controllers
 
     public ActionResult Details(int id)
     {
-    Animal thisAnimal = _db.Animals.FirstOrDefault(AnimalShelter => AnimalShelter.AnimalId == id);
-    return View(thisAnimal);
+      Animal thisAnimal = _db.Animals.FirstOrDefault(AnimalShelter => AnimalShelter.AnimalId == id);
+      return View(thisAnimal);
+    }
+    public ActionResult Edit(int id)
+    {
+      var thisAnimal = _db.Animals.FirstOrDefault(animals => animals.AnimalId == id);
+      return View(thisAnimal);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Animal animal)
+    {
+      _db.Entry(animal).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
