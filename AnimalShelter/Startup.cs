@@ -31,7 +31,7 @@ namespace AnimalShelter
 // added a form of Entity that understands MySQL as a service.
       services.AddEntityFrameworkMySql()
       // configure that service to use a particular database context the AddDbContext() method, which will be a representation of our database
-        .AddDbContext<ToDoListContext>(options => options
+        .AddDbContext<AnimalShelterContext>(options => options
         // "use our default connection"
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
@@ -55,5 +55,5 @@ namespace AnimalShelter
       });
     }
   }
-  
+
 }
